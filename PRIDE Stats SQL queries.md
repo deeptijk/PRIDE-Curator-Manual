@@ -40,8 +40,7 @@
     GROUP BY to_char(SUBMISSION_DATE, 'YYYY-MM')
     ORDER BY 1
 
-
-                                     OR
+                                          OR
 
     select  to_char(SUBMISSION_DATE - 7/24,'IYYY'), to_char(SUBMISSION_DATE - 7/24,'IW'),count(*)
     from PRIDEARCH.PROJECT
