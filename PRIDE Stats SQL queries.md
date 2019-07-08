@@ -1,9 +1,9 @@
 #### 1. ---------- To get the Number of Submissions/month ----------
 
-    select  to_char(SUBMISSION_DATE, 'YYYY-MM') AS months,count(*) AS NumberOfSubmissions
-    from PRIDEARCH.PROJECT
-    GROUP BY to_char(SUBMISSION_DATE, 'YYYY-MM')
-    ORDER BY 1
+select  to_char(SUBMISSION_DATE, 'YYYY-MM') AS months,count(*) AS NumberOfSubmissions
+from PRIDEARCH.PROJECT
+GROUP BY to_char(SUBMISSION_DATE, 'YYYY-MM')
+ORDER BY 1
 
 #### 2. ---------- To get the total size of the whole dataset ----------
 
