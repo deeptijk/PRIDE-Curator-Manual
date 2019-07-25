@@ -4,7 +4,17 @@
     from PRIDEARCH.PROJECT
     GROUP BY to_char(SUBMISSION_DATE, 'YYYY-MM')
     ORDER BY 1
+   
+##### ---------- To get the count of species ----------  
 
+    SELECT cv.ACCESSION, cv.NAME, count(DISTINCT PCV.PROJECT_FK) AS "PROJECT_COUNT"
+    FROM PRIDEARCH.CV_PARAM cv 
+    JOIN PROJECT_CVPARAM pcv
+    ON cv.CV_PARAM_PK = PCV.CV_PARAM_FK
+    WHERE cv.CV_LABEL = 'NEWT' 
+    GROUP BY cv.ACCESSION, cv.NAME
+    ORDER BY cv.NAME
+    
 ##### ---------- To get the total size of the whole dataset ----------
 
     select  SUM(pf.FILE_SIZE)/(1024*1024*1024*1024)
