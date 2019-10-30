@@ -71,3 +71,19 @@
     select count(distinct(lh.email)) from project p 
     join lab_head lh on (p.PROJECT_PK = lh.PROJECT_FK) 
 
+
+##### ---------- To know the datasets from perticular species and the size of the dataset ---------- 
+
+
+    SELECT p.ACCESSION,p.TITLE, sum(pf.FILE_SIZE)/(1024*1024*1024*1024), count(pf.FILE_TYPE)
+    FROM PROJECT p join PROJECT_FILES pf
+    on p.PROJECT_PK = pf.PROJECT_FK
+    WHERE pf.FILE_TYPE = 'RAW'
+    group by p.PROJECT_PK,p.ACCESSION,p.TITLE, pf.FILE_TYPE
+    having
+    --   IS_PUBLIC = 1 AND
+    PROJECT_PK IN (SELECT DISTINCT(PROJECT_FK)
+                     FROM PROJECT_CVPARAM
+                      WHERE CV_PARAM_FK=(SELECT CV_PARAM_PK
+                                         FROM CV_PARAM
+                                         WHERE ACCESSION='9606'));  
