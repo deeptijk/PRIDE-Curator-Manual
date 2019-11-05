@@ -87,3 +87,17 @@
                       WHERE CV_PARAM_FK=(SELECT CV_PARAM_PK
                                          FROM CV_PARAM
                                          WHERE ACCESSION='9606'));  
+
+
+##### ---------- To join two table and condition ---------- 
+
+     SELECT DISTINCT p.ACCESSION, pf.FILE_NAME
+     FROM PROJECT_FILES pf INNER JOIN PROJECT p ON pf.PROJECT_FK = p.PROJECT_PK WHERE FILE_NAME LIKE '%MaxQuant%'
+ 
+        Or
+ 
+ 
+     SELECT *
+    FROM PROJECT p WHERE p.DATA_PROC_PROTOCOL_DESCR LIKE '%MaxQuant%'
+    INNER JOIN PROJECT_CVPARAM pcv ON p.PROJECT_PK = pcv.PROJECT_FK 
+    INNER JOIN CV_PARAM cv ON pcv.CV_PARAM_FK = cv.CV_PARAM_PK AND cv.ACCESSION = '9606'
